@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+
+{% load crispy_forms_filters %}
+
+{% block title %}
+	Post-Create
+{% endblock %}
+
+{% block body %}
+	{% if form %}
+        <form method="POST" id="login-form" class="post-section">
+            {% csrf_token %}
+            <h1 class="text-center">Post-Send</h1>
+            <hr>
+            {{ form|crispy }}
+            <input type="submit" value="Send-Post" class="btn btn-primary">
+        </form>
+
+    {% else %}
+
+    {% endif %}
+{% endblock %}

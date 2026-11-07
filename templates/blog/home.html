@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+	Home
+{% endblock %}
+
+
+{% block body %}
+    {% if posts %}
+        {% for post in posts %}
+            <div class="post-section">
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="{{ post.author.profile.image.url }}" class="img-fluid rounded-circle" style="width: 100px;height: 100px">
+                    </div>
+                    <div class="col-md-8 mt-4">
+                        <b><a href="{% url 'posts' post.author %}" class="me-3">{{ post.author }}</a></b>
+                        <b>{{ post.date_posted }}</b>
+                    </div>
+                </div>
+                <hr>
+                <h1><a href="{% url 'detail' post.id %}">{{ post.title }}</a></h1>
+                <p>{{ post.content }}</p>
+            </div>
+        {% endfor %}
+        {% include 'blog/pagination.html' %}
+    {% else %}
+        <h1>Post are not available</h1>
+    {% endif %}
+{% endblock %}

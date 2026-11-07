@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+
+{% load crispy_forms_filters %}
+
+{% block title %}
+	Login
+{% endblock %}
+
+{% block body %}
+	{% if form %}
+        <form method="POST" class="post-section" id="login-form">
+            {% csrf_token %}
+            <h1 class="text-center text-danger">Login Now</h1>
+            <hr>
+            {{ form|crispy }}
+            <h2 ><a href="{% url 'home' %}"><input type="submit" class="btn btn-primary form-control"></a></h2>
+            <h2><a href="{% url 'register' %}" class="btn btn-danger form-control">Register</a></h2>
+        </form>
+    {% else %}
+        <h1>Form not found</h1>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'blog/base.html' %}
+
+{% load crispy_forms_filters %}
+
+{% block title %}
+	Profile-page
+{% endblock %}
+
+{% block body %}
+	<div class="post-section">
+            {% if request.user.is_authenticated %}
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="{{ request.user.profile.image.url }}" class="img-fluid rounded-circle" style="width: 100px;height: 100px">
+                    </div>
+                    <div class="col-md-8">
+                        <h1>username={{ user.username }}</h1>
+                        <h1>Email={{ user.email }}</h1>
+                    </div>
+                </div>
+                <hr>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ u_form|crispy }}
+                    {{ p_form|crispy }}
+                    <div>
+                        <input type="submit" value="Profile-Update" class="btn btn-primary">
+                    </div>
+                </form>
+            {% else %}
+                <h1>Profile is Not found</h1>
+            {% endif %}
+    </div>
+{% endblock %}

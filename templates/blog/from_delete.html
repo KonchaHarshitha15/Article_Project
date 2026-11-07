@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+
+{% load crispy_forms_filters %}
+
+{% block title %}
+	Post-Delete
+{% endblock %}
+
+{% block body %}
+	{% if form %}
+        <form method="POST" class="post-section">
+           {% csrf_token %}
+           {{ form|crispy }}
+            <h1 class="text-center">Post-Delete</h1>
+            <hr>
+            <h2>Are You Sure You Want Delete This <u style="color:red">{{ post.title }}</u> Object! </h2>
+
+           <input type="submit" value="Yes I'm Sure" class="btn btn-danger">
+           <a href="{% url 'home' %}" class="btn btn-primary">Back</a>
+           <div>
+               <input type="submit" value="Delete" class="form-control bg-dark text-white mt-4">
+           </div>
+        </form>
+    {% else %}
+    {% endif %}
+{% endblock %}

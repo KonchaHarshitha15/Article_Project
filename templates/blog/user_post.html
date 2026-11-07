@@ -1,0 +1,55 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+	User-Post-Page
+{% endblock %}
+
+
+{% block body %}
+    {% if user_posts %}
+        {% for post in user_posts %}
+            <div class="post-section">
+                <div class="row">
+                    <div class="col-md-2">
+                        <img src="{{ post.author.profile.image.url }}" class="img-fluid rounded-circle" style="width: 100px;height: 100px">
+                    </div>
+                    <div class="col-md-8 mt-5">
+                        <b><a href="">{{ post.author }}</a></b>
+                        <b>{{ post.date_posted }}</b>
+                    </div>
+                </div>
+                <hr>
+                <h1><a href="{% url 'detail' post.id %}">{{ post.title }}</a></h1>
+                <p>{{ post.content }}</p>
+            </div>
+        {% endfor %}
+    {% elif requested_username %}
+        <div class="text-center mt-5 post-section">
+
+            <h1>404 - User Not Found</h1>
+
+            <p>
+                User "{{ username }}" does not exist.
+            </p>
+
+            <a href="{% url 'home' %}" class="btn btn-primary">
+                Go to Home
+            </a>
+
+        </div>
+
+    {% else %}
+        <div class="text-center mt-5 post-section">
+            <h2>No Posts Available</h2>
+
+            <p>
+                This user has not published any posts yet.
+            </p>
+
+            <a href="{% url 'home' %}" class="btn btn-primary">
+                Go to Home
+            </a>
+        </div>
+
+    {% endif %}
+{% endblock %}

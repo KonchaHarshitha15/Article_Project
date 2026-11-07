@@ -1,0 +1,11 @@
+{% if page_obj.has_previous  %}
+    <a href="?page=1" class="btn btn-outline-primary btn-lg">First</a>
+
+    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-primary btn-lg">Previous</a>
+{% endif %}
+<a href="" class="btn btn-danger btn-lg">{{ page_obj.number }}</a>
+{% if page_obj.has_next  %}
+    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-primary btn-lg">Next</a>
+
+    <a href="?page=last" class="btn btn-outline-primary btn-lg">Last</a>
+{% endif %}
